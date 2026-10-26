@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bakery Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SIDEBAR: every button has a data-section value that matches the id of a <section> below.
+       script.js reads it to decide which section to show. -->
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>Bakery Management System</h1>
+      <p>DBMS mini-project</p>
+    </div>
+    <nav id="nav">
+      <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+      <button class="nav-btn" data-section="customers">Customers</button>
+      <button class="nav-btn" data-section="products">Products &amp; Stock</button>
+      <button class="nav-btn" data-section="orders">Orders</button>
+      <button class="nav-btn" data-section="payments">Payments</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <!-- Honest label: this version does NOT read from Oracle. -->
+    <div class="demo-banner">
+      Demonstration data. These rows are typed into <code>script.js</code> to mirror the Oracle
+      script. This page is not connected to a live Oracle database.
+    </div>
+
+    <!-- 1. DASHBOARD: totals come from Customers, Products, Orders and Payments -->
+    <section id="dashboard" class="panel active">
+      <h2>Dashboard</h2>
+      <p class="source">Totals calculated from the Customers, Products, Orders and Payments tables.</p>
+      <div class="stats" id="stats"></div>
+      <div class="two-col">
+        <div class="box">
+          <h3>Low stock</h3>
+          <ul id="lowStockList" class="low-list"></ul>
+        </div>
+        <div class="box">
+          <h3>Latest orders</h3>
+          <div id="recentOrders"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CUSTOMERS: Customers table (+ order count from Orders) -->
+    <section id="customers" class="panel">
+      <h2>Customer details</h2>
+      <p class="source">Table used: Customers (order count comes from Orders).</p>
+      <input type="search" id="customerSearch" class="search" placeholder="Search customers by ID, name or email">
+      <p class="count" id="customerCount"></p>
+      <div id="customersTable" class="table-wrap"></div>
+    </section>
+
+    <!-- 3. PRODUCTS & STOCK: Products table (+ category from ProductCategoryMap and Categories) -->
+    <section id="products" class="panel">
+      <h2>Products &amp; stock</h2>
+      <p class="source">Tables used: Products, ProductCategoryMap, Categories. Stock below 10 is marked as low.</p>
+      <input type="search" id="productSearch" class="search" placeholder="Search products by ID, name or category">
+      <p class="count" id="productCount"></p>
+      <div id="productsTable" class="table-wrap"></div>
+    </section>
+
+    <!-- 4. ORDERS: Orders table joined with Customers (payment info comes from Payments) -->
+    <section id="orders" class="panel">
+      <h2>Orders</h2>
+      <p class="source">Tables used: Orders, Customers, Payments. The Orders table has no status column, so the last column only shows whether a payment exists.</p>
+      <div id="ordersTable" class="table-wrap"></div>
+    </section>
+
+    <!-- 5. PAYMENTS: Payments table -->
+    <section id="payments" class="panel">
+      <h2>Payments</h2>
+      <p class="source">Table used: Payments. The table has no status column, so none is shown.</p>
+      <p class="count" id="paymentSummary"></p>
+      <div id="paymentsTable" class="table-wrap"></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
