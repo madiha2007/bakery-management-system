@@ -133,3 +133,69 @@ tbody tr:hover { background: var(--cream); }
   .nav-btn { width: auto; margin: 0; white-space: nowrap; }
   .content { padding: 20px 16px 40px; }
 }
+/* ===== STOCK MANAGEMENT ADDITIONS =====
+   Paste this block at the very BOTTOM of your existing style.css. Nothing above it changes.
+   var(--name, #fallback) uses your theme colours if they exist, otherwise the fallback. */
+
+/* Action buttons in the table */
+.stock-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.stock-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--cocoa, #4b2e22);
+  border-radius: 8px;
+  background: var(--butter, #f7e6b0);
+  color: var(--cocoa, #4b2e22);
+  font: inherit;
+  font-size: .85rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.stock-btn.remove { background: transparent; }
+.stock-btn:hover:not(:disabled) { background: var(--latte, #ead9c4); }
+.stock-btn:focus-visible { outline: 3px solid var(--rose, #f6d5d1); outline-offset: 2px; }
+.stock-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Status badges: four clearly different looks */
+.stock-badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.stock-badge.in       { background: #d6e8d5; color: #2f5d3a; }
+.stock-badge.low      { background: #f7e6b0; color: #7a5a00; }
+.stock-badge.critical { background: #f9c89b; color: #7a3300; }
+.stock-badge.out      { background: #a5333f; color: #fff; }
+
+/* Dashboard stock alert list */
+.stock-item.critical, .stock-item.out { font-weight: 600; }
+
+/* Success / error messages and stock alerts */
+#toastArea { position: fixed; top: 16px; right: 16px; z-index: 1000; display: grid; gap: 10px; width: min(92vw, 380px); }
+.toast {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-left: 6px solid; border-radius: 10px;
+  background: var(--paper, #fffdf8); color: var(--cocoa, #4b2e22);
+  box-shadow: 0 6px 20px rgba(75, 46, 34, .25);
+}
+.toast.success        { border-color: #2f5d3a; }
+.toast.error          { border-color: #a5333f; }
+.toast.alert-critical { border-color: #d9822b; background: #fff1e0; }
+.toast.alert-out      { border-color: #a5333f; background: #fbe4e2; }
+.toast-close { border: 0; background: transparent; color: inherit; font-size: 1.2rem; line-height: 1; cursor: pointer; }
+
+/* Quantity dialog */
+#stockDialog {
+  width: min(92vw, 380px); padding: 22px;
+  border: 1px solid var(--latte, #ead9c4); border-radius: 14px;
+  background: var(--paper, #fffdf8); color: var(--cocoa, #4b2e22);
+}
+#stockDialog::backdrop { background: rgba(75, 46, 34, .5); }
+#stockDialog h3 { margin: 0 0 6px; }
+#stockDialog p { margin: 0 0 14px; }
+#stockDialog label { display: block; margin-bottom: 4px; font-weight: 600; }
+#stockQty {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--latte, #ead9c4);
+  border-radius: 10px; background: #fff; color: inherit; font: inherit;
+}
+.stock-error { min-height: 1.4em; margin: 8px 0 0; color: #a5333f; font-size: .9rem; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.btn-primary, .btn-secondary { padding: 9px 16px; border-radius: 10px; font: inherit; cursor: pointer; }
+.btn-primary { border: 1px solid var(--cocoa, #4b2e22); background: var(--cocoa, #4b2e22); color: var(--cream, #fbf4e8); }
+.btn-secondary { border: 1px solid var(--cocoa, #4b2e22); background: transparent; color: var(--cocoa, #4b2e22); }
+.btn-primary:disabled, .btn-secondary:disabled { opacity: .5; cursor: not-allowed; }
